@@ -7,6 +7,8 @@
     <title>Document</title>
   </head>
   <body>
+    <div id="js-elements"></div>
+    <div id="elements"></div>
     <div id="root"></div>
     <script
       crossorigin
@@ -16,6 +18,12 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
-    <script src="./App.js"></script>
+    <script>
+      const element = document.createElement('h1');
+      const jsContainer = document.getElementById('js-elements');
+      jsContainer.appendChild(element);
+    </script>
+    <script src="./Elements.js"></script>
+    <script src="./NestedElements.js"></script>
   </body>
 </html>
