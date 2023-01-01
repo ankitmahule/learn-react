@@ -10,20 +10,15 @@
     <div id="js-elements"></div>
     <div id="elements"></div>
     <div id="root"></div>
-    <script
-      crossorigin
-      src="https://unpkg.com/react@18/umd/react.development.js"
-    ></script>
-    <script
-      crossorigin
-      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-    ></script>
+    <div id="app"></div>
     <script>
       const element = document.createElement('h1');
       const jsContainer = document.getElementById('js-elements');
       jsContainer.appendChild(element);
     </script>
-    <script src="./Elements.js"></script>
-    <script src="./NestedElements.js"></script>
+    <script type="module" src="./Elements.js"></script>
+    <script type="module" src="./NestedElements.js"></script>
+    <script type="module" src="./App.js"></script>
+  
   </body>
 </html>
