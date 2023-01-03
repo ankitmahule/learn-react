@@ -2,7 +2,7 @@
   "name": "namaste-react",
   "version": "1.0.0",
   "description": "Practice react code here",
-  "main": "Elements.js",
+  "main": "App.js",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
