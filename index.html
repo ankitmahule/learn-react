@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Food Villa</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./style.scss" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <div id="app"></div>
     <div id="js-elements"></div>
     <div id="elements"></div>
     <div id="root"></div>
-    <div id="app"></div>
+    <script
+      src="https://kit.fontawesome.com/22ef2481d6.js"
+      crossorigin="anonymous"
+    ></script>
     <script>
-      const element = document.createElement('h1');
-      const jsContainer = document.getElementById('js-elements');
+      const element = document.createElement("h1");
+      const jsContainer = document.getElementById("js-elements");
       jsContainer.appendChild(element);
     </script>
-    <script type="module" src="./Elements.js"></script>
-    <script type="module" src="./NestedElements.js"></script>
+    <!--Assignment 1 and 2 related changes TODO refactor -->
+    <!-- <script type="module" src="./components/Elements.js"></script>
+    <script type="module" src="./components/NestedElements.js"></script> -->
     <script type="module" src="./App.js"></script>
-  
   </body>
 </html>
