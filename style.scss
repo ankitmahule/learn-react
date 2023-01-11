@@ -7,8 +7,7 @@ body {
   font-family: "Oswald", sans-serif;
 }
 .header {
-  background: #444;
-  color: #fff;
+  box-shadow: 0px 0px 6px #ccc;
   nav {
     margin-bottom: 2rem;
     height: 3rem;
@@ -39,7 +38,7 @@ body {
       }
       a {
         text-decoration: none;
-        color: #ccc;
+        color: #666;
       }
     }
   }
@@ -84,6 +83,7 @@ body {
       color: #fff;
       border: none;
       margin: 2rem 0;
+      cursor: pointer;
     }
   }
 }
@@ -91,7 +91,7 @@ body {
 .footer {
   height: 5rem;
   text-align: center;
-  background: #000;
+  background: #333;
   color: #fff;
   padding: 2rem;
 }
