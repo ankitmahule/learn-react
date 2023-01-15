@@ -15,6 +15,12 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    h1 {
+      a {
+        text-decoration: none;
+        color: #222;
+      }
+    }
   }
 }
 
@@ -94,4 +100,20 @@ body {
   background: #333;
   color: #fff;
   padding: 2rem;
+}
+
+.shimmer-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rem;
+  flex-wrap: wrap;
+  .shimmer {
+    height: 10rem;
+    width: 33%;
+    border: 1px solid #ddd;
+    .lines {
+      border: 5px solid #ccc;
+      margin-bottom: 1rem;
+    }
+  }
 }

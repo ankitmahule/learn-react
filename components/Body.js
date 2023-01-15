@@ -1,17 +1,34 @@
-import { restaurantList } from "../shared/constants";
 import RestaurantCard from "./RestaurantCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { API_URL } from "../shared/constants";
+import Shimmer from "./Shimmer";
 
-function filterRestaurant(searchText, restauraunts) {
-  return restauraunts.filter((eachRestaurant) =>
-    eachRestaurant.data.name.toLowerCase().includes(searchText.toLowerCase())
+function filterRestaurant(text, filteredRestaurants) {
+  return filteredRestaurants.filter((eachRestaurant) =>
+    eachRestaurant.data.name.toLowerCase().includes(text.toLowerCase())
   );
 }
+
+async function getRestaurants() {
+  const response = await fetch(API_URL);
+  return await response.json();
+}
+
 const Body = () => {
-  const [restuarants, setRestaurants] = useState(restaurantList);
+  let [restaurants, setRestaurants] = useState([]);
+  let [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    getRestaurants().then((response) => {
+      setRestaurants(response.data.cards[2].data.data.cards);
+      setFilteredRestaurants(response.data.cards[2].data.data.cards);
+    });
+  }, []);
+
   return (
-    <div className="container">
+    <Shimmer />
+    /*{ <div className="container">
       <div className="search-container">
         <input
           type="text"
@@ -20,9 +37,9 @@ const Body = () => {
           onKeyUp={(e) => {
             const text = e.target.value;
             if (text !== "") {
-              setRestaurants(filterRestaurant(e.target.value, restuarants));
+              setFilteredRestaurants(filterRestaurant(text, restaurants));
             } else {
-              setRestaurants(restaurantList);
+              setRestaurants(restaurants);
             }
             setSearchText(text);
           }}
@@ -31,12 +48,20 @@ const Body = () => {
           <em className="fa fa-search"></em>
         </button>
       </div>
-      <div className="restaurant-list">
-        {restuarants.map((restaurant) => (
-          <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
-        ))}
-      </div>
-    </div>
+      {restaurants?.length === 0 ? (
+        <Shimmer />
+      ) : (
+        <div className="restaurant-list">
+          {searchText === ""
+            ? restaurants.map((restaurant) => (
+                <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+              ))
+            : filteredRestaurants.map((restaurant) => (
+                <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+              ))}
+        </div>
+      )}
+    </div> }*/
   );
 };
 export default Body;

@@ -13,7 +13,6 @@ const RestaurantCard = ({
       <h3>{cuisines.join(", ")}</h3>
       <h4>{lastMileTravelString}</h4>
       <h5>{avgRating}</h5>
-      <button className="order-btn">Order Now</button>
     </div>
   </>
 );
