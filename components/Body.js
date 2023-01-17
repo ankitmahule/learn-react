@@ -27,8 +27,7 @@ const Body = () => {
   }, []);
 
   return (
-    <Shimmer />
-    /*{ <div className="container">
+    <div className="container">
       <div className="search-container">
         <input
           type="text"
@@ -45,7 +44,14 @@ const Body = () => {
           }}
         />
         <button className="btn">
-          <em className="fa fa-search"></em>
+          {searchText === "" ? (
+            <em className="fa fa-search"></em>
+          ) : (
+            <em
+              className="fa fa-multiply"
+              onClick={() => setSearchText("")}
+            ></em>
+          )}
         </button>
       </div>
       {restaurants?.length === 0 ? (
@@ -61,7 +67,7 @@ const Body = () => {
               ))}
         </div>
       )}
-    </div> }*/
+    </div>
   );
 };
 export default Body;
