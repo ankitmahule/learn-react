@@ -24,6 +24,11 @@ body {
   }
 }
 
+a {
+  text-decoration: none;
+  color: #000;
+}
+
 .container {
   width: 90%;
   margin-left: auto;
@@ -151,5 +156,18 @@ body {
     100% {
       background-position: 468px 0;
     }
+  }
+}
+
+.menu-items {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .items {
+    width: 26%;
+    border: 1px solid #ddd;
+    height: 10rem;
+    padding: 1rem;
+    margin: 1rem;
   }
 }

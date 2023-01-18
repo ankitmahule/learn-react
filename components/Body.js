@@ -1,17 +1,18 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
-import { API_URL } from "../shared/constants";
+import { RESTAURANT_LIST } from "../shared/constants";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 function filterRestaurant(text, filteredRestaurants) {
   return filteredRestaurants.filter((eachRestaurant) =>
-    eachRestaurant.data.name.toLowerCase().includes(text.toLowerCase())
+    eachRestaurant?.data?.name?.toLowerCase().includes(text?.toLowerCase())
   );
 }
 
 async function getRestaurants() {
-  const response = await fetch(API_URL);
-  return await response.json();
+  const response = await fetch(RESTAURANT_LIST);
+  return await response?.json();
 }
 
 const Body = () => {
@@ -21,8 +22,8 @@ const Body = () => {
 
   useEffect(() => {
     getRestaurants().then((response) => {
-      setRestaurants(response.data.cards[2].data.data.cards);
-      setFilteredRestaurants(response.data.cards[2].data.data.cards);
+      setRestaurants(response?.data?.cards[2]?.data?.data?.cards);
+      setFilteredRestaurants(response?.data?.cards[2]?.data?.data?.cards);
     });
   }, []);
 
@@ -60,10 +61,20 @@ const Body = () => {
         <div className="restaurant-list">
           {searchText === ""
             ? restaurants.map((restaurant) => (
-                <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+                <Link to={`/restaurant/${restaurant?.data?.id}`}>
+                  <RestaurantCard
+                    {...restaurant?.data}
+                    key={restaurant?.data?.id}
+                  />
+                </Link>
               ))
             : filteredRestaurants.map((restaurant) => (
-                <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+                <Link to="/restaurant/">
+                  <RestaurantCard
+                    {...restaurant?.data}
+                    key={restaurant?.data?.id}
+                  />
+                </Link>
               ))}
         </div>
       )}
