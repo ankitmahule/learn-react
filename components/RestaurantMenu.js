@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MENU_DETAILS } from "../shared/constants";
+import { MENU_DETAILS, IMG_CDN_URL } from "../shared/constants";
 import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () => {
@@ -25,7 +25,8 @@ const RestaurantMenu = () => {
       {Object.values(menuDetails).map((eachMenu) => {
         return (
           <div key={eachMenu.id} class="items">
-            <h1 className="menu-container">{eachMenu?.name}</h1>
+            <img src={`${IMG_CDN_URL}/${eachMenu.cloudinaryImageId}`} />
+            <h4 className="menu-container">{eachMenu?.name}</h4>
           </div>
         );
       })}

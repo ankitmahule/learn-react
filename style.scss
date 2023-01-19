@@ -88,13 +88,8 @@ a {
     img {
       width: 100%;
     }
-    .order-btn {
-      background: #000;
-      padding: 1rem;
-      color: #fff;
-      border: none;
-      margin: 2rem 0;
-      cursor: pointer;
+    p {
+      width: 90%;
     }
   }
 }
@@ -163,11 +158,14 @@ a {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  flex-direction: row;
   .items {
     width: 26%;
     border: 1px solid #ddd;
-    height: 10rem;
     padding: 1rem;
     margin: 1rem;
+    img {
+      width: 100%;
+    }
   }
 }
