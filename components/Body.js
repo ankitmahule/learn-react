@@ -28,57 +28,61 @@ const Body = () => {
   }, []);
 
   return (
-    <div className="container">
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search any restaurant"
-          className="search-input"
-          onKeyUp={(e) => {
-            const text = e.target.value;
-            if (text !== "") {
-              setFilteredRestaurants(filterRestaurant(text, restaurants));
-            } else {
-              setRestaurants(restaurants);
-            }
-            setSearchText(text);
-          }}
-        />
-        <button className="btn">
-          {searchText === "" ? (
-            <em className="fa fa-search"></em>
-          ) : (
-            <em
-              className="fa fa-multiply"
-              onClick={() => setSearchText("")}
-            ></em>
-          )}
-        </button>
-      </div>
-      {restaurants?.length === 0 ? (
-        <Shimmer />
-      ) : (
-        <div className="restaurant-list">
-          {searchText === ""
-            ? restaurants.map((restaurant) => (
-                <Link to={`/restaurant/${restaurant?.data?.id}`}>
-                  <RestaurantCard
-                    {...restaurant?.data}
-                    key={restaurant?.data?.id}
-                  />
-                </Link>
-              ))
-            : filteredRestaurants.map((restaurant) => (
-                <Link to="/restaurant/">
-                  <RestaurantCard
-                    {...restaurant?.data}
-                    key={restaurant?.data?.id}
-                  />
-                </Link>
-              ))}
+    <>
+      <div className="banner"></div>
+      <div className="container">
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search any restaurant"
+            className="search-input"
+            value={searchText}
+            onKeyUp={(e) => {
+              const text = e.target.value;
+              if (text !== "") {
+                setFilteredRestaurants(filterRestaurant(text, restaurants));
+              } else {
+                setRestaurants(restaurants);
+              }
+              setSearchText(text);
+            }}
+          />
+          <button className="btn">
+            {searchText === "" ? (
+              <em className="fa fa-search"></em>
+            ) : (
+              <em
+                className="fa fa-multiply"
+                onClick={() => setSearchText("")}
+              ></em>
+            )}
+          </button>
         </div>
-      )}
-    </div>
+        {restaurants?.length === 0 ? (
+          <Shimmer />
+        ) : (
+          <div className="restaurant-list">
+            {searchText === ""
+              ? restaurants.map((restaurant) => (
+                  <Link to={`/restaurant/${restaurant?.data?.id}`}>
+                    <RestaurantCard
+                      {...restaurant?.data}
+                      key={restaurant?.data?.id}
+                    />
+                  </Link>
+                ))
+              : filteredRestaurants.map((restaurant) => (
+                  <Link to="/restaurant/">
+                    <RestaurantCard
+                      {...restaurant?.data}
+                      key={restaurant?.data?.id}
+                    />
+                  </Link>
+                ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 export default Body;

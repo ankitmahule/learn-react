@@ -6,11 +6,20 @@
 body {
   font-family: "Oswald", sans-serif;
 }
+
+.banner {
+  background: url("./assets/banner-img.jpg");
+  height: 40rem;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .header {
-  box-shadow: 0px 0px 6px #ccc;
+  position: fixed;
+  width: 100%;
   nav {
     margin-bottom: 2rem;
-    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -18,7 +27,7 @@ body {
     h1 {
       a {
         text-decoration: none;
-        color: #222;
+        color: #eee;
       }
     }
   }
@@ -49,7 +58,7 @@ a {
       }
       a {
         text-decoration: none;
-        color: #666;
+        color: #eee;
       }
     }
   }
@@ -86,10 +95,14 @@ a {
   .restaurant-card {
     margin-bottom: 2rem;
     img {
-      width: 100%;
+      max-width: 100%;
+      height: auto;
     }
     p {
-      width: 90%;
+      width: 70%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
