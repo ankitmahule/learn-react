@@ -29,14 +29,15 @@ const Body = () => {
 
   return (
     <>
-      <div className="banner"></div>
-      <div className="container">
+      <div className="banner">
+        <h1>
+          Welcome, Get All Your Favorite Food Items At The Doorstep, Order Now
+        </h1>
         <div className="search-container">
           <input
             type="text"
             placeholder="Search any restaurant"
             className="search-input"
-            value={searchText}
             onKeyUp={(e) => {
               const text = e.target.value;
               if (text !== "") {
@@ -58,28 +59,24 @@ const Body = () => {
             )}
           </button>
         </div>
+      </div>
+      <div className="restaurant-container">
         {restaurants?.length === 0 ? (
           <Shimmer />
         ) : (
-          <div className="restaurant-list">
-            {searchText === ""
-              ? restaurants.map((restaurant) => (
-                  <Link to={`/restaurant/${restaurant?.data?.id}`}>
-                    <RestaurantCard
-                      {...restaurant?.data}
-                      key={restaurant?.data?.id}
-                    />
-                  </Link>
-                ))
-              : filteredRestaurants.map((restaurant) => (
-                  <Link to="/restaurant/">
-                    <RestaurantCard
-                      {...restaurant?.data}
-                      key={restaurant?.data?.id}
-                    />
-                  </Link>
-                ))}
-          </div>
+          <>
+            <h1>Featured Restaurants</h1>
+            <div className="restaurant-list">
+              {restaurants.map((restaurant) => (
+                <Link to={`/restaurant/${restaurant?.data?.id}`}>
+                  <RestaurantCard
+                    {...restaurant?.data}
+                    key={restaurant?.data?.id}
+                  />
+                </Link>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </>
