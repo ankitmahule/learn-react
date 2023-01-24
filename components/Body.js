@@ -1,8 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
-import { RESTAURANT_LIST } from "../shared/constants";
+import { useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useRestaurant from "../utils/useRestaurant";
 
 function filterRestaurant(text, filteredRestaurants) {
   return filteredRestaurants.filter((eachRestaurant) =>
@@ -10,24 +10,14 @@ function filterRestaurant(text, filteredRestaurants) {
   );
 }
 
-async function getRestaurants() {
-  const response = await fetch(RESTAURANT_LIST);
-  return await response?.json();
-}
-
 const Body = () => {
-  let [restaurants, setRestaurants] = useState([]);
-  let [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const restaurants = useRestaurant([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
-  useEffect(() => {
-    getRestaurants().then((response) => {
-      setRestaurants(response?.data?.cards[2]?.data?.data?.cards);
-      setFilteredRestaurants(response?.data?.cards[2]?.data?.data?.cards);
-    });
-  }, []);
-
-  return (
+  return !restaurants ? (
+    <Shimmer />
+  ) : (
     <>
       <div className="banner">
         <h1>
@@ -38,26 +28,36 @@ const Body = () => {
             type="text"
             placeholder="Search any restaurant"
             className="search-input"
-            onKeyUp={(e) => {
+            value={searchText}
+            onChange={(e) => {
               const text = e.target.value;
               if (text !== "") {
                 setFilteredRestaurants(filterRestaurant(text, restaurants));
-              } else {
-                setRestaurants(restaurants);
               }
               setSearchText(text);
             }}
           />
+
           <button className="btn">
-            {searchText === "" ? (
-              <em className="fa fa-search"></em>
-            ) : (
-              <em
-                className="fa fa-multiply"
-                onClick={() => setSearchText("")}
-              ></em>
-            )}
+            <em
+              className={searchText === "" ? "" : "fa fa-close"}
+              onClick={() => {
+                setSearchText("");
+              }}
+            ></em>
           </button>
+
+          {searchText !== "" && (
+            <div className="search-restaurants">
+              <ul>
+                {filteredRestaurants.map((restaurant) => (
+                  <Link to={`/restaurant/${restaurant?.data?.id}`}>
+                    <li key={restaurant?.data?.id}>{restaurant?.data?.name}</li>
+                  </Link>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
       <div className="restaurant-container">
