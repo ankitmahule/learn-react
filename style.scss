@@ -113,8 +113,11 @@ a {
 .restaurant-container {
   margin-top: 7rem;
   h1 {
-    margin: 7rem 0;
+    margin: 6rem auto;
     text-align: center;
+    width: 50%;
+    border-bottom: 1px solid #ddd;
+    padding: 2rem;
   }
 }
 
@@ -196,18 +199,24 @@ a {
   }
 }
 
-.menu-items {
+.restaurant-details {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-  flex-direction: row;
-  .items {
-    width: 26%;
-    border: 1px solid #ddd;
-    padding: 1rem;
-    margin: 1rem;
-    img {
-      width: 100%;
+  .restaurant-data {
+    padding: 2rem;
+  }
+  .menu-items {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    .items {
+      width: 26%;
+      padding: 1rem;
+      margin: 1rem;
+      img {
+        width: 100%;
+      }
     }
   }
 }
