@@ -199,24 +199,48 @@ a {
   }
 }
 
-.restaurant-details {
+.restaurant-data {
   display: flex;
-  justify-content: space-between;
-  .restaurant-data {
+  margin: 2rem 0;
+  align-items: center;
+  .restaurant-img {
+    img {
+      width: 100%;
+    }
+    margin-right: 2rem;
+    width: 20%;
+  }
+}
+
+.restaurant-details {
+  .search-menu {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding: 1rem 4rem;
+    background: #eee;
+    margin: 2rem auto;
+  }
+  .search-container {
+    justify-content: flex-end;
+    margin: 0;
+  }
+  h1 {
     padding: 2rem;
   }
   .menu-items {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(21%, 1fr));
     .items {
-      width: 26%;
-      padding: 1rem;
-      margin: 1rem;
+      margin: 2rem;
       img {
         width: 100%;
+        max-height: 100%;
       }
     }
   }
+}
+
+.bg-gray {
+  background: #eee;
 }
