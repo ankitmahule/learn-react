@@ -231,6 +231,7 @@ a {
   .menu-items {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(21%, 1fr));
+    margin: -2rem;
     .items {
       margin: 2rem;
       img {
