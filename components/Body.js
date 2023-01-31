@@ -3,12 +3,7 @@ import { useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestaurant from "../utils/useRestaurant";
-
-function filterRestaurant(text, filteredRestaurants) {
-  return filteredRestaurants.filter((eachRestaurant) =>
-    eachRestaurant?.data?.name?.toLowerCase().includes(text?.toLowerCase())
-  );
-}
+import { filterRestaurant } from "../utils/utils";
 
 const Body = () => {
   const restaurants = useRestaurant([]);
