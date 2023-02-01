@@ -12,7 +12,7 @@ const RestaurantCard = ({
       <h2>{name}</h2>
       <p>{cuisines.join(", ")}</p>
       <h4>{lastMileTravelString}</h4>
-      <h5>{avgRating}</h5>
+      <h5>{avgRating !== "--" ? `${avgRating}/5` : "0/5"}</h5>
     </div>
   </>
 );

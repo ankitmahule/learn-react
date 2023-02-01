@@ -9,6 +9,11 @@ const Header = () => (
       <div className="right">
         <ul>
           <li>
+            <Link to="/cart">
+              <em class="fa fa-shopping-cart icon-space"></em>Cart
+            </Link>
+          </li>
+          <li>
             <Link to="/about">About us</Link>
           </li>
           <li>

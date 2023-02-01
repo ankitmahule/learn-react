@@ -25,7 +25,7 @@ const RestaurantMenu = () => {
             {menuDetails?.locality}, {menuDetails?.area}, {menuDetails?.city}
           </h3>
           <h3>{menuDetails?.cuisines?.join(", ")}</h3>
-          <h4>{menuDetails?.avgRating}</h4>
+          <h4>{menuDetails?.avgRating}/5</h4>
         </div>
       </div>
       <div className="restaurant-details">
@@ -62,22 +62,31 @@ const RestaurantMenu = () => {
           </div>
         </div>
         <div className="menu-items">
-          {filteredMenu?.map((eachMenu) => {
-            return (
-              <div key={eachMenu.id} className="items">
-                <img
-                  src={`${IMG_CDN_URL}/${eachMenu.cloudinaryImageId}`}
-                  alt={eachMenu.name}
-                />
-                <h4 className="menu-container">{eachMenu?.name}</h4>
-                <p>{eachMenu.description}</p>
-                <h5>
-                  <em className="fa fa-rupee"></em>
-                  {parseFloat(eachMenu.price / 100)}
-                </h5>
-              </div>
-            );
-          })}
+          {filteredMenu.length > 0 ? (
+            filteredMenu?.map((eachMenu) => {
+              return (
+                <div key={eachMenu.id} className="items">
+                  <img
+                    src={`${IMG_CDN_URL}/${eachMenu.cloudinaryImageId}`}
+                    alt={eachMenu.name}
+                  />
+                  <h4 className="menu-container">{eachMenu?.name}</h4>
+                  <p>{eachMenu.description}</p>
+                  <h5>
+                    <em className="fa fa-rupee"></em>
+                    {parseFloat(eachMenu.price / 100)}
+                  </h5>
+                </div>
+              );
+            })
+          ) : (
+            <div>
+              <h1 class="no-items">
+                <em className="fa fa-warning"></em>No Menu Items Found!! Please
+                Try Again..
+              </h1>
+            </div>
+          )}
         </div>
       </div>
     </section>

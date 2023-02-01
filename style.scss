@@ -3,8 +3,11 @@
   padding: 0;
 }
 
-body {
+body,
+html {
   font-family: "Oswald", sans-serif;
+  position: relative;
+  min-height: 100vh;
 }
 
 .banner {
@@ -141,11 +144,16 @@ a {
 }
 
 .footer {
-  height: 5rem;
   text-align: center;
   background: #333;
   color: #fff;
-  padding: 2rem;
+  position: absolute;
+  width: 100%;
+  margin: 4rem 0;
+  top: 100%;
+  .footer-content {
+    padding: 4rem;
+  }
 }
 
 .shimmer-container {
@@ -239,9 +247,18 @@ a {
         max-height: 100%;
       }
     }
+    .no-items {
+      color: #999;
+      margin: 2rem;
+      font-size: 2rem;
+    }
   }
 }
 
 .bg-gray {
   background: #eee;
+}
+
+.icon-space {
+  margin: 0 0.5rem;
 }
