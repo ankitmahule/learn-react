@@ -81,7 +81,7 @@ const RestaurantMenu = () => {
             })
           ) : (
             <div>
-              <h1 class="no-items">
+              <h1 className="no-items">
                 <em className="fa fa-warning"></em>No Menu Items Found!! Please
                 Try Again..
               </h1>

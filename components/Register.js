@@ -1,14 +1,14 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   return (
     <div className="form-container">
       <div className="login-text">
-        <h1>Login if you have signed up already</h1>
+        <h1>Sign up here with few of your details</h1>
         <h2>OR</h2>
-        <Link to="/register">
-          <h4>Sign Up Here</h4>
+        <Link to="/login">
+          <h4>Sign In Here</h4>
         </Link>
       </div>
       <div className="divider"></div>
@@ -32,8 +32,10 @@ const Login = () => {
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            setSubmitting(false);
-            window.location.href = "/";
+            setTimeout(() => {
+              alert(JSON.stringify(values, null, 2));
+              setSubmitting(false);
+            }, 400);
           }}
         >
           {({ isSubmitting }) => (
@@ -66,6 +68,19 @@ const Login = () => {
                 />
               </div>
               <div className="form-field">
+                <Field
+                  type="text"
+                  name="contactno"
+                  placeholder="Enter Contact No."
+                  autoComplete="off"
+                />
+                <ErrorMessage
+                  className="error-text"
+                  name="contactno"
+                  component="div"
+                />
+              </div>
+              <div className="form-field">
                 <button className="btn" type="submit" disabled={isSubmitting}>
                   Submit
                 </button>
@@ -77,4 +92,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default Register;

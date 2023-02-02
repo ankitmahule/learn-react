@@ -10,7 +10,7 @@ const Header = () => (
         <ul>
           <li>
             <Link to="/cart">
-              <em class="fa fa-shopping-cart icon-space"></em>Cart
+              <em className="fa fa-shopping-cart icon-space"></em>Cart
             </Link>
           </li>
           <li>
