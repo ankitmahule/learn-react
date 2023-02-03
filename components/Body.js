@@ -63,11 +63,11 @@ const Body = () => {
             <h1>Featured Restaurants</h1>
             <div className="restaurant-list">
               {restaurants.map((restaurant) => (
-                <Link to={`/restaurant/${restaurant?.data?.id}`}>
-                  <RestaurantCard
-                    {...restaurant?.data}
-                    key={restaurant?.data?.id}
-                  />
+                <Link
+                  to={`/restaurant/${restaurant?.data?.id}`}
+                  key={restaurant?.data?.id}
+                >
+                  <RestaurantCard {...restaurant?.data} />
                 </Link>
               ))}
             </div>

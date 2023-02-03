@@ -10,14 +10,26 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Login from "./components/Login";
 import Cart from "./components/Cart";
 import Register from "./components/Register";
+import UserContext from "./utils/UserContext";
+import { useState } from "react";
 
-const AppLayout = () => (
-  <>
-    <Header />
-    <Outlet />
-    <Footer />
-  </>
-);
+const AppLayout = () => {
+  const [user, setUser] = useState({});
+  return (
+    <>
+      <UserContext.Provider
+        value={{
+          user: user,
+          setUser: setUser,
+        }}
+      >
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
+    </>
+  );
+};
 
 const appRouter = createBrowserRouter([
   {

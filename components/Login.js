@@ -1,18 +1,28 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Login = () => {
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [isLoginError, setIsLoginError] = useState(false);
   return (
     <div className="form-container">
       <div className="login-text">
         <h1>Login if you have signed up already</h1>
         <h2>OR</h2>
-        <Link to="/register">
-          <h4>Sign Up Here</h4>
-        </Link>
+        <Link to="/register">Sign Up Here</Link>
       </div>
       <div className="divider"></div>
       <div className="login-form">
+        {isLoginError && (
+          <h4 className="error-text">
+            Incorrect Login, Please Check User Email or Password
+          </h4>
+        )}
         <Formik
           initialValues={{ email: "", password: "" }}
           validate={(values) => {
@@ -33,7 +43,19 @@ const Login = () => {
           }}
           onSubmit={(values, { setSubmitting }) => {
             setSubmitting(false);
-            window.location.href = "/";
+            if (
+              values?.email !== user?.email ||
+              values?.password !== user?.password
+            ) {
+              setIsLoginError(true);
+              return;
+            }
+            setIsLoginError(false);
+            setUser({
+              ...user,
+              isUserLoggedIn: true,
+            });
+            navigate("/");
           }}
         >
           {({ isSubmitting }) => (
