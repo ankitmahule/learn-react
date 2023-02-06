@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "../css/forms.scss";
 
 const Login = () => {
   const { user, setUser } = useContext(UserContext);
@@ -12,8 +13,10 @@ const Login = () => {
   return (
     <div className="form-container">
       <div className="login-text">
-        <h1>Login if you have signed up already</h1>
-        <h2>OR</h2>
+        <h1 className="text-3xl font-bold">
+          Login if you have signed up already
+        </h1>
+        <h2 className="text-4xl font-bold">OR</h2>
         <Link to="/register">Sign Up Here</Link>
       </div>
       <div className="divider"></div>

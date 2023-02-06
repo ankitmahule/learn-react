@@ -1,3 +1,5 @@
+import "../css/shimmer.scss";
+
 const Shimmer = () => {
   return (
     <>

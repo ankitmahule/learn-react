@@ -12,6 +12,7 @@ import Cart from "./components/Cart";
 import Register from "./components/Register";
 import UserContext from "./utils/UserContext";
 import { useState } from "react";
+import "./css/style.scss";
 
 const AppLayout = () => {
   const [user, setUser] = useState({});

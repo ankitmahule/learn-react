@@ -1,3 +1,5 @@
+import "../css/footer.scss";
+
 const Footer = () => (
   <div className="footer">
     <div className="container footer-content">

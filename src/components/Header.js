@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../utils/UserContext";
+import "../css/header.scss";
+
 const Header = () => {
   const { user } = useContext(UserContext);
   return (

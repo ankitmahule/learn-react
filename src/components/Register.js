@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
+import "../css/forms.scss";
 
 const Register = () => {
   const { user, setUser } = useContext(UserContext);
@@ -9,8 +10,10 @@ const Register = () => {
   return (
     <div className="form-container">
       <div className="login-text">
-        <h1>Sign up here with few of your details</h1>
-        <h2>OR</h2>
+        <h1 className="text-3xl font-bold">
+          Login if you have signed up already
+        </h1>
+        <h2 className="text-4xl font-bold">OR</h2>
         <Link to="/login">Sign In Here</Link>
       </div>
       <div className="divider"></div>
@@ -36,7 +39,8 @@ const Register = () => {
             else if (values.password.length < 8)
               errors.password = "Minimum length of password should be >= 8";
 
-            if (!/^[0-9]{10}$/.test(values.contactno))
+            if (!values.contactno) errors.contactno = "This field is required";
+            else if (!/^[0-9]{10}$/.test(values.contactno))
               errors.contactno =
                 "Contact no. should be of 10 digits only and a number";
             return errors;

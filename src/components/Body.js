@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestaurant from "../utils/useRestaurant";
 import { filterRestaurant } from "../utils/utils";
+import "../css/body.scss";
 
 const Body = () => {
   const restaurants = useRestaurant([]);
@@ -15,7 +16,7 @@ const Body = () => {
   ) : (
     <>
       <div className="banner">
-        <h1>
+        <h1 className="font-bold">
           Welcome, Get All Your Favorite Food Items At The Doorstep, Order Now
         </h1>
         <div className="search-container">
@@ -60,7 +61,7 @@ const Body = () => {
           <Shimmer />
         ) : (
           <>
-            <h1>Featured Restaurants</h1>
+            <h1 className="font-bold text-4xl">Featured Restaurants</h1>
             <div className="restaurant-list">
               {restaurants.map((restaurant) => (
                 <Link

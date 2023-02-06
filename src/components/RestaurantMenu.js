@@ -3,6 +3,7 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { filterMenu } from "../utils/utils";
 import { useState } from "react";
 import Shimmer from "./Shimmer";
+import "../css/menu.scss";
 
 const RestaurantMenu = () => {
   const { menuDetails, filteredMenu, setFilteredMenu } = useRestaurantMenu();
@@ -20,10 +21,10 @@ const RestaurantMenu = () => {
         </div>
         <div className="details">
           <h1>{menuDetails?.name}</h1>
-          <h3>{menuDetails?.lastMileTravelString}</h3>
-          <h3>
+          <p>{menuDetails?.lastMileTravelString}</p>
+          <p>
             {menuDetails?.locality}, {menuDetails?.area}, {menuDetails?.city}
-          </h3>
+          </p>
           <h3>{menuDetails?.cuisines?.join(", ")}</h3>
           <h4>{menuDetails?.avgRating}/5</h4>
         </div>
@@ -31,7 +32,7 @@ const RestaurantMenu = () => {
       <div className="restaurant-details">
         <div className="search-menu">
           <h1>
-            Menu Items <span>({filteredMenu.length} items)</span>
+            Menu Items <span>({filteredMenu.length})</span>
           </h1>
           <div className="search-container">
             <input
@@ -72,10 +73,13 @@ const RestaurantMenu = () => {
                   />
                   <h4 className="menu-container">{eachMenu?.name}</h4>
                   <p>{eachMenu.description}</p>
-                  <h5>
-                    <em className="fa fa-rupee"></em>
-                    {parseFloat(eachMenu.price / 100)}
-                  </h5>
+                  <div className="price-container">
+                    <h5>
+                      <em className="fa fa-rupee"></em>
+                      {parseFloat(eachMenu.price / 100)}
+                    </h5>
+                    <button class="cart-button">Add To Cart</button>
+                  </div>
                 </div>
               );
             })
