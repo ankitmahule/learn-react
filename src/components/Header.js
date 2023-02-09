@@ -9,7 +9,9 @@ const Header = () => {
     <header className="header">
       <nav className="container">
         <h1>
-          <Link to="/">Food Villa</Link>
+          <Link to="/">
+            <em className="fa fa-home mr-2"></em>Food Villa
+          </Link>
         </h1>
         <div className="right">
           <ul>

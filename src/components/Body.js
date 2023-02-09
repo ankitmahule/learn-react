@@ -16,7 +16,7 @@ const Body = () => {
   ) : (
     <>
       <div className="banner">
-        <h1 className="font-bold">
+        <h1 className="font-bold text-5xl leading-relaxed">
           Welcome, Get All Your Favorite Food Items At The Doorstep, Order Now
         </h1>
         <div className="search-container">
@@ -46,9 +46,12 @@ const Body = () => {
           {searchText !== "" && (
             <div className="search-restaurants">
               <ul>
-                {filteredRestaurants.map((restaurant) => (
-                  <Link to={`/restaurant/${restaurant?.data?.id}`}>
-                    <li key={restaurant?.data?.id}>{restaurant?.data?.name}</li>
+                {filteredRestaurants?.map((restaurant) => (
+                  <Link
+                    key={restaurant?.data?.id}
+                    to={`/restaurant/${restaurant?.data?.id}`}
+                  >
+                    <li>{restaurant?.data?.name}</li>
                   </Link>
                 ))}
               </ul>
@@ -63,7 +66,7 @@ const Body = () => {
           <>
             <h1 className="font-bold text-4xl">Featured Restaurants</h1>
             <div className="restaurant-list">
-              {restaurants.map((restaurant) => (
+              {restaurants?.map((restaurant) => (
                 <Link
                   to={`/restaurant/${restaurant?.data?.id}`}
                   key={restaurant?.data?.id}

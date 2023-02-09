@@ -14,7 +14,12 @@ export function getStarRatings(ratings) {
   return Array(5)
     .fill()
     .map((value, index) => {
-      return <span className={getRatingClassNames(index, ratings)}></span>;
+      return (
+        <span
+          key={index}
+          className={getRatingClassNames(index, ratings)}
+        ></span>
+      );
     });
 }
 

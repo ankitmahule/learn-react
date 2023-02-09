@@ -14,7 +14,9 @@ const Register = () => {
           Login if you have signed up already
         </h1>
         <h2 className="text-4xl font-bold">OR</h2>
-        <Link to="/login">Sign In Here</Link>
+        <Link to="/login" className="text-2xl">
+          Sign In Here
+        </Link>
       </div>
       <div className="divider"></div>
 

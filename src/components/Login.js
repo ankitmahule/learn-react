@@ -17,7 +17,9 @@ const Login = () => {
           Login if you have signed up already
         </h1>
         <h2 className="text-4xl font-bold">OR</h2>
-        <Link to="/register">Sign Up Here</Link>
+        <Link to="/register" className="text-2xl">
+          Sign Up Here
+        </Link>
       </div>
       <div className="divider"></div>
       <div className="login-form">
