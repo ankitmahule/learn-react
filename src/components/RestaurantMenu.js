@@ -78,7 +78,6 @@ const RestaurantMenu = () => {
         ) : (
           <div className="menu-items">
             {filteredMenu?.map((eachMenu) => {
-              console.log(eachMenu);
               return (
                 <div key={eachMenu.id} className="items">
                   <img
