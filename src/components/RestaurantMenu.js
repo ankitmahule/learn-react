@@ -3,11 +3,26 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { filterMenu, getStarRatings } from "../utils/utils";
 import { useState } from "react";
 import Shimmer from "./Shimmer";
+import { useDispatch } from "react-redux";
+import { addItem, clearItems, removeItem } from "../utils/cartSlice";
+import { useSelector } from "react-redux";
 import "../css/menu.scss";
 
 const RestaurantMenu = () => {
   const { menuDetails, filteredMenu, setFilteredMenu } = useRestaurantMenu();
   const [searchText, setSearchText] = useState("");
+  const dispatch = useDispatch();
+  const cartItems = useSelector((store) => store.cart.items);
+  const addToCart = (item) => {
+    dispatch(addItem(item));
+  };
+  const removeFromCart = (itemId) => {
+    dispatch(removeItem(itemId));
+  };
+  const clearCart = (itemId) => {
+    dispatch(clearItems(itemId));
+  };
+
   return !menuDetails ? (
     <Shimmer />
   ) : (
@@ -43,7 +58,7 @@ const RestaurantMenu = () => {
           <div className="search-container">
             <input
               type="text"
-              placeholder="Search any restaurant"
+              placeholder="Search any menu"
               className="search-input"
               value={searchText}
               onChange={(e) => {
@@ -91,9 +106,51 @@ const RestaurantMenu = () => {
                   <div className="price-container">
                     <h5 className="text-xl font-bold">
                       <em className="fa fa-rupee"></em>
-                      {parseFloat(eachMenu.price / 100)}
+                      {parseFloat(
+                        cartItems[eachMenu.id]?.quantity
+                          ? (eachMenu.price / 100) *
+                              cartItems[eachMenu.id]?.quantity
+                          : (eachMenu.price / 100) * 1
+                      )}
                     </h5>
-                    <button className="cart-button">Add To Cart</button>
+                    {cartItems.hasOwnProperty(eachMenu.id) ? (
+                      <div className="add-quantity">
+                        <div className="decrease">
+                          <button
+                            type="button"
+                            className="fa fa-minus"
+                            onClick={() => {
+                              if (cartItems[eachMenu.id]?.quantity <= 1) {
+                                clearCart(eachMenu.id);
+                              } else {
+                                removeFromCart(eachMenu.id);
+                              }
+                            }}
+                          ></button>
+                        </div>
+                        <div className="quantity-input">
+                          {!cartItems[eachMenu.id]?.quantity
+                            ? 0
+                            : cartItems[eachMenu.id]?.quantity}
+                        </div>
+                        <div className="increase">
+                          <button
+                            type="button"
+                            className="fa fa-plus"
+                            onClick={() => {
+                              addToCart(eachMenu);
+                            }}
+                          ></button>
+                        </div>
+                      </div>
+                    ) : (
+                      <button
+                        className="cart-button"
+                        onClick={() => addToCart(eachMenu)}
+                      >
+                        Add To Cart
+                      </button>
+                    )}
                   </div>
                 </div>
               );

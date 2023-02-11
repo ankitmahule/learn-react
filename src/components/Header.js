@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 import UserContext from "../utils/UserContext";
 import "../css/header.scss";
 
 const Header = () => {
   const { user } = useContext(UserContext);
+  const cartItems = useSelector((store) => store.cart.items);
   return (
     <header className="header">
       <nav className="container">
@@ -15,11 +17,6 @@ const Header = () => {
         </h1>
         <div className="right">
           <ul>
-            <li>
-              <Link to="/cart">
-                <em className="fa fa-shopping-cart icon-space"></em>Cart
-              </Link>
-            </li>
             <li>
               <Link to="/about">About us</Link>
             </li>
@@ -37,6 +34,18 @@ const Header = () => {
                 <li>Logout</li>
               </>
             )}
+            <li>
+              <Link to="/cart">
+                <em className="fa fa-shopping-cart icon-space ml-2"></em>
+                Cart
+                <span className="ml-2">
+                  {Object.values(cartItems).reduce(
+                    (accumulator, eachItem) => accumulator + eachItem.quantity,
+                    0
+                  )}
+                </span>
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

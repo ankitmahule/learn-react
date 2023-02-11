@@ -51,7 +51,13 @@ export default class About extends Component {
             <h2 className="my-2">{this.state.userInfo.bio}</h2>
             <h2 className="my-2">{this.state.userInfo.company}</h2>
             <h2 className="my-2">{this.state.userInfo.location}</h2>
-            <h2 className="my-2">{this.state.userInfo.blog}</h2>
+            <a
+              target="_blank"
+              href={this.state.userInfo.blog}
+              className="my-2 text-xl"
+            >
+              {this.state.userInfo.blog}
+            </a>
           </div>
         </div>
       </div>
