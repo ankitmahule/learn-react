@@ -53,3 +53,22 @@ a {
 .border-bottom {
   border-bottom: 1px solid #ddd;
 }
+
+.breadcrumbs {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  li {
+    font-size: 1rem;
+    &:not(:last-child) {
+      &::after {
+        content: ">";
+        margin: 0 0.5rem;
+      }
+    }
+    a {
+      margin-right: 0.2rem;
+      text-decoration: underline;
+    }
+  }
+}

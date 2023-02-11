@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { addItem, clearItems, removeItem } from "../utils/cartSlice";
 import { useSelector } from "react-redux";
 import "../css/menu.scss";
+import Breadcrumbs from "./Breadcrumbs";
 
 const RestaurantMenu = () => {
   const { menuDetails, filteredMenu, setFilteredMenu } = useRestaurantMenu();
@@ -27,6 +28,12 @@ const RestaurantMenu = () => {
     <Shimmer />
   ) : (
     <section className="container">
+      <Breadcrumbs
+        {...[
+          { name: "Home", link: "/" },
+          { name: "Menu", link: null },
+        ]}
+      />
       <div className="restaurant-data">
         <div className="restaurant-img">
           <img
