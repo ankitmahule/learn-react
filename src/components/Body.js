@@ -16,47 +16,49 @@ const Body = () => {
   ) : (
     <>
       <div className="banner">
-        <h1 className="font-bold text-5xl leading-relaxed">
-          Welcome, Get All Your Favorite Food Items At The Doorstep, Order Now
-        </h1>
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search any restaurant"
-            className="search-input"
-            value={searchText}
-            onChange={(e) => {
-              const text = e.target.value;
-              if (text !== "") {
-                setFilteredRestaurants(filterRestaurant(text, restaurants));
-              }
-              setSearchText(text);
-            }}
-          />
-
-          <button className="btn">
-            <em
-              className={searchText === "" ? "" : "fa fa-close"}
-              onClick={() => {
-                setSearchText("");
+        <div className="banner-heading container pt-32">
+          <h1 className="font-bold text-5xl leading-relaxed">
+            Welcome, <br /> Get All Your Favorite Food Items At The Doorstep,
+            Order Now
+          </h1>
+          <div className="search-container">
+            <input
+              type="text"
+              placeholder="Search any restaurant"
+              className="search-input"
+              value={searchText}
+              onChange={(e) => {
+                const text = e.target.value;
+                if (text !== "") {
+                  setFilteredRestaurants(filterRestaurant(text, restaurants));
+                }
+                setSearchText(text);
               }}
-            ></em>
-          </button>
+            />
+            <button className="btn">
+              <em
+                className={searchText === "" ? "" : "fa fa-close"}
+                onClick={() => {
+                  setSearchText("");
+                }}
+              ></em>
+            </button>
 
-          {searchText !== "" && (
-            <div className="search-restaurants">
-              <ul>
-                {filteredRestaurants?.map((restaurant) => (
-                  <Link
-                    key={restaurant?.data?.id}
-                    to={`/restaurant/${restaurant?.data?.id}`}
-                  >
-                    <li>{restaurant?.data?.name}</li>
-                  </Link>
-                ))}
-              </ul>
-            </div>
-          )}
+            {searchText !== "" && (
+              <div className="search-restaurants">
+                <ul>
+                  {filteredRestaurants?.map((restaurant) => (
+                    <Link
+                      key={restaurant?.data?.id}
+                      to={`/restaurant/${restaurant?.data?.id}`}
+                    >
+                      <li>{restaurant?.data?.name}</li>
+                    </Link>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="restaurant-container">

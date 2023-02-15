@@ -1,18 +1,23 @@
 .banner {
-  background: url("../assets/images/banner.jpg");
-  height: 100vh;
-  width: 100%;
+  background: url("../assets/images/banner-1.jpg");
+  height: 87vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  display: flex;
+  /*   display: flex;
   align-items: end;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column; */
   h1 {
-    width: 56%;
-    padding: 0 1.7rem;
     font-family: "Oswald", sans-serif;
+    color: #fff;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+  }
+  .banner-heading {
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -57,24 +62,24 @@
 
 .search-container {
   margin: 4rem 0;
-  display: flex;
   position: relative;
-  margin-right: 10rem;
-  margin-left: auto;
+  width: 50%;
+  margin: 5rem auto;
   input {
-    width: 44rem;
-    padding: 0 1rem;
     box-shadow: none;
-    outline: none;
+    height: 3rem;
     border: none;
     border-bottom: 1px solid #ccc;
-    height: 3rem;
+    outline: none;
+    padding: 0 1rem;
+    width: 100%;
   }
   button {
     border: none;
-    background: #fff;
-    border-bottom: 1px solid #ccc;
-    width: 3rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    right: 2%;
   }
   .search-restaurants {
     position: absolute;

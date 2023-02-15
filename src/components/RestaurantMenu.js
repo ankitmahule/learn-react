@@ -3,27 +3,20 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { filterMenu, getStarRatings } from "../utils/utils";
 import { useState } from "react";
 import Shimmer from "./Shimmer";
-import { useDispatch } from "react-redux";
-import { addItem, clearItems, removeItem } from "../utils/cartSlice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../css/menu.scss";
 import Breadcrumbs from "./Breadcrumbs";
+import AddToCart from "./AddToCart";
+import { addItem } from "../utils/cartSlice";
 
 const RestaurantMenu = () => {
   const { menuDetails, filteredMenu, setFilteredMenu } = useRestaurantMenu();
   const [searchText, setSearchText] = useState("");
-  const dispatch = useDispatch();
   const cartItems = useSelector((store) => store.cart.items);
+  const dispatch = useDispatch();
   const addToCart = (item) => {
     dispatch(addItem(item));
   };
-  const removeFromCart = (itemId) => {
-    dispatch(removeItem(itemId));
-  };
-  const clearCart = (itemId) => {
-    dispatch(clearItems(itemId));
-  };
-
   return !menuDetails ? (
     <Shimmer />
   ) : (
@@ -121,35 +114,7 @@ const RestaurantMenu = () => {
                       )}
                     </h5>
                     {cartItems.hasOwnProperty(eachMenu.id) ? (
-                      <div className="add-quantity">
-                        <div className="decrease">
-                          <button
-                            type="button"
-                            className="fa fa-minus"
-                            onClick={() => {
-                              if (cartItems[eachMenu.id]?.quantity <= 1) {
-                                clearCart(eachMenu.id);
-                              } else {
-                                removeFromCart(eachMenu.id);
-                              }
-                            }}
-                          ></button>
-                        </div>
-                        <div className="quantity-input">
-                          {!cartItems[eachMenu.id]?.quantity
-                            ? 0
-                            : cartItems[eachMenu.id]?.quantity}
-                        </div>
-                        <div className="increase">
-                          <button
-                            type="button"
-                            className="fa fa-plus"
-                            onClick={() => {
-                              addToCart(eachMenu);
-                            }}
-                          ></button>
-                        </div>
-                      </div>
+                      <AddToCart cartItems={cartItems} menu={eachMenu} />
                     ) : (
                       <button
                         className="cart-button"
