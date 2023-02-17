@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { addItem, clearItems, removeItem } from "../utils/cartSlice";
-
+import "../css/style.scss";
 const AddToCart = ({ cartItems, menu }) => {
   const dispatch = useDispatch();
 
@@ -15,10 +15,9 @@ const AddToCart = ({ cartItems, menu }) => {
   };
   return (
     <div className="add-quantity">
-      <div className="decrease">
+      <div className="rounded decrease">
         <button
           type="button"
-          className="fa fa-minus"
           onClick={() => {
             if (cartItems[menu.id]?.quantity <= 1) {
               clearCart(menu.id);
@@ -26,19 +25,22 @@ const AddToCart = ({ cartItems, menu }) => {
               removeFromCart(menu.id);
             }
           }}
-        ></button>
+        >
+          <em className="fa fa-minus"></em>
+        </button>
       </div>
       <div className="quantity-input">
         {!cartItems[menu.id]?.quantity ? 0 : cartItems[menu.id]?.quantity}
       </div>
-      <div className="increase">
+      <div className="rounded increase">
         <button
           type="button"
-          className="fa fa-plus"
           onClick={() => {
             addToCart(menu);
           }}
-        ></button>
+        >
+          <em className="fa fa-plus"></em>
+        </button>
       </div>
     </div>
   );

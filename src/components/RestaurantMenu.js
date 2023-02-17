@@ -52,7 +52,7 @@ const RestaurantMenu = () => {
         </div>
       </div>
       <div className="restaurant-details">
-        <div className="search-menu">
+        <div className="search-menu rounded">
           <h1 className="text-2xl font-bold">
             Menu Items <span>({filteredMenu?.length})</span>
           </h1>
@@ -60,7 +60,7 @@ const RestaurantMenu = () => {
             <input
               type="text"
               placeholder="Search any menu"
-              className="search-input"
+              className="search-input rounded"
               value={searchText}
               onChange={(e) => {
                 const text = e.target.value;
@@ -73,7 +73,7 @@ const RestaurantMenu = () => {
               }}
             />
 
-            <button className="btn">
+            <button>
               <em
                 className={searchText === "" ? "" : "fa fa-close"}
                 onClick={() => {
@@ -118,7 +118,7 @@ const RestaurantMenu = () => {
                       <AddToCart cartItems={cartItems} menu={eachMenu} />
                     ) : (
                       <button
-                        className="cart-button"
+                        className="btn"
                         onClick={() => addToCart(eachMenu)}
                       >
                         Add To Cart

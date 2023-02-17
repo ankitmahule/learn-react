@@ -10,6 +10,8 @@ import "./css/style.scss";
 import Shimmer from "./components/Shimmer";
 import { Provider } from "react-redux";
 import store from "./utils/store";
+import persistStore from "redux-persist/es/persistStore";
+import { PersistGate } from "redux-persist/integration/react";
 
 const Contact = lazy(() => import("./components/Contact"));
 const About = lazy(() => import("./components/About"));
@@ -17,21 +19,24 @@ const Login = lazy(() => import("./components/Login"));
 const Register = lazy(() => import("./components/Register"));
 const Cart = lazy(() => import("./components/Cart"));
 const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
+const persistor = persistStore(store);
 
 const AppLayout = () => {
   const [user, setUser] = useState({});
   return (
     <Provider store={store}>
-      <UserContext.Provider
-        value={{
-          user: user,
-          setUser: setUser,
-        }}
-      >
-        <Header />
-        <Outlet />
-        <Footer />
-      </UserContext.Provider>
+      <PersistGate persistor={persistor}>
+        <UserContext.Provider
+          value={{
+            user: user,
+            setUser: setUser,
+          }}
+        >
+          <Header />
+          <Outlet />
+          <Footer />
+        </UserContext.Provider>
+      </PersistGate>
     </Provider>
   );
 };

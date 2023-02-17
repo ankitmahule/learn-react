@@ -25,7 +25,7 @@ const Body = () => {
             <input
               type="text"
               placeholder="Search any restaurant"
-              className="search-input"
+              className="search-input rounded"
               value={searchText}
               onChange={(e) => {
                 const text = e.target.value;
@@ -35,7 +35,7 @@ const Body = () => {
                 setSearchText(text);
               }}
             />
-            <button className="btn">
+            <button>
               <em
                 className={searchText === "" ? "" : "fa fa-close"}
                 onClick={() => {

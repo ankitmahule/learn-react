@@ -14,10 +14,6 @@
     height: 30%;
     text-align: center;
   }
-  .divider {
-    height: 40vh;
-    border: 1px solid #eee;
-  }
   .login-form {
     width: 30%;
     margin-top: 2rem;
@@ -28,15 +24,6 @@
     }
     .form-field {
       margin: 2rem 0;
-    }
-    .btn {
-      width: 60%;
-      padding: 1rem 1.5rem;
-      background: #000;
-      color: #fff;
-      border: none;
-      outline: none;
-      cursor: pointer;
     }
   }
 }
