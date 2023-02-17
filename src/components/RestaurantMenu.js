@@ -5,6 +5,7 @@ import { useState } from "react";
 import Shimmer from "./Shimmer";
 import { useDispatch, useSelector } from "react-redux";
 import "../css/menu.scss";
+import "../css/add-to-cart.scss";
 import Breadcrumbs from "./Breadcrumbs";
 import AddToCart from "./AddToCart";
 import { addItem } from "../utils/cartSlice";

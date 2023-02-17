@@ -55,27 +55,6 @@
           color: #fff;
           cursor: pointer;
         }
-        .add-quantity {
-          display: flex;
-          align-items: center;
-          padding: 2rem;
-          .quantity-input {
-            width: 5rem;
-            text-align: center;
-          }
-          .increase {
-            background: #222;
-            padding: 0 0.5rem;
-            color: #fff;
-            cursor: pointer;
-          }
-          .decrease {
-            background: #222;
-            padding: 0 0.5rem;
-            color: #fff;
-            cursor: pointer;
-          }
-        }
       }
     }
     .no-items {

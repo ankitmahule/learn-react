@@ -2,10 +2,6 @@ import { useDispatch } from "react-redux";
 import { addItem, clearItems, removeItem } from "../utils/cartSlice";
 
 const AddToCart = ({ cartItems, menu }) => {
-  {
-    console.log(cartItems);
-    console.log(menu);
-  }
   const dispatch = useDispatch();
 
   const addToCart = (item) => {

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 const Breadcrumbs = (props) => {
   return (
     <ul className="breadcrumbs my-5">
-      {console.log(props)}
       {Object.values(props).map((eachItem, index) => {
         return (
           <li key={index}>
