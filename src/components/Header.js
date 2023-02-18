@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import UserContext from "../utils/UserContext";
 import "../css/header.scss";
@@ -7,8 +7,26 @@ import "../css/header.scss";
 const Header = () => {
   const { user } = useContext(UserContext);
   const cartItems = useSelector((store) => store.cart.items);
+  const [headerBackground, setHeaderBackground] =
+    useState("header-transparent");
+
+  const listenScrollEvent = () => {
+    if (window.scrollY < 73) {
+      return setHeaderBackground("header-transparent");
+    } else if (window.scrollY > 1000) {
+      return setHeaderBackground("header-background");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", listenScrollEvent);
+
+    return () => {
+      window.removeEventListener("scroll", listenScrollEvent);
+    };
+  }, []);
   return (
-    <header className="header">
+    <header className={"header" + " " + headerBackground}>
       <nav className="container">
         <h1>
           <Link to="/">

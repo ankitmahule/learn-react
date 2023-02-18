@@ -1,6 +1,11 @@
 .header {
   width: 100%;
-  background: rgba(0, 0, 0);
+  position: fixed;
+  z-index: 1000;
+  -webkit-transition: all ease-out 0.5s;
+  -moz-transition: all ease-out 0.5s;
+  -o-transition: all ease-out 0.5s;
+  transition: all ease-out 0.5s;
   nav {
     display: flex;
     align-items: center;
@@ -16,4 +21,12 @@
       }
     }
   }
+}
+
+.header-transparent {
+  background: transparent;
+}
+
+.header-background {
+  background: rgba(0, 0, 0);
 }
