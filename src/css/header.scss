@@ -24,9 +24,15 @@
 }
 
 .header-transparent {
+  @extend .header;
   background: transparent;
 }
 
 .header-background {
+  @extend .header;
   background: rgba(0, 0, 0);
+}
+
+.static-position {
+  position: static;
 }

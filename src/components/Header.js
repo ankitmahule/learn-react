@@ -4,16 +4,20 @@ import { useSelector } from "react-redux";
 import UserContext from "../utils/UserContext";
 import "../css/header.scss";
 
+import { useLocation } from "react-router-dom";
+
 const Header = () => {
   const { user } = useContext(UserContext);
   const cartItems = useSelector((store) => store.cart.items);
   const [headerBackground, setHeaderBackground] =
     useState("header-transparent");
 
+  const location = useLocation();
+
   const listenScrollEvent = () => {
     if (window.scrollY < 73) {
       return setHeaderBackground("header-transparent");
-    } else if (window.scrollY > 1000) {
+    } else if (window.scrollY > 800) {
       return setHeaderBackground("header-background");
     }
   };
@@ -26,7 +30,13 @@ const Header = () => {
     };
   }, []);
   return (
-    <header className={"header" + " " + headerBackground}>
+    <header
+      className={
+        location.pathname === "/"
+          ? headerBackground
+          : "static-position header-background"
+      }
+    >
       <nav className="container">
         <h1>
           <Link to="/">

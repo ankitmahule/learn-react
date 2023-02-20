@@ -9,6 +9,7 @@ import "../css/add-to-cart.scss";
 import Breadcrumbs from "./Breadcrumbs";
 import AddToCart from "./AddToCart";
 import { addItem } from "../utils/cartSlice";
+import PriceInfo from "./PriceInfo";
 
 const RestaurantMenu = () => {
   const { menuDetails, filteredMenu, setFilteredMenu } = useRestaurantMenu();
@@ -106,13 +107,7 @@ const RestaurantMenu = () => {
                   <p>{eachMenu.description}</p>
                   <div className="price-container">
                     <h5 className="text-xl font-bold">
-                      <em className="fa fa-rupee"></em>
-                      {parseFloat(
-                        cartItems[eachMenu.id]?.quantity
-                          ? (eachMenu.price / 100) *
-                              cartItems[eachMenu.id]?.quantity
-                          : (eachMenu.price / 100) * 1
-                      )}
+                      <PriceInfo cartItems={cartItems} menu={eachMenu} />
                     </h5>
                     {cartItems.hasOwnProperty(eachMenu.id) ? (
                       <AddToCart cartItems={cartItems} menu={eachMenu} />
