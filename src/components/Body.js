@@ -16,7 +16,7 @@ const Body = () => {
   ) : (
     <>
       <div className="banner">
-        <div className="banner-heading container pt-32">
+        <div className="banner-heading container pt-52">
           <h1 className="font-bold text-5xl leading-relaxed">
             Welcome, <br /> Get All Your Favorite Food Items At The Doorstep,
             Order Now

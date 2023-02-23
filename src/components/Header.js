@@ -17,7 +17,7 @@ const Header = () => {
   const listenScrollEvent = () => {
     if (window.scrollY < 73) {
       return setHeaderBackground("header-transparent");
-    } else if (window.scrollY > 800) {
+    } else if (window.scrollY > 70) {
       return setHeaderBackground("header-background");
     }
   };
@@ -48,9 +48,9 @@ const Header = () => {
             <li>
               <Link to="/about">About us</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/contact">Contact us</Link>
-            </li>
+            </li> */}
             {!user?.isUserLoggedIn && (
               <li>
                 <Link to="/login">Sign In</Link>

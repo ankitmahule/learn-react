@@ -55,14 +55,14 @@ const appRouter = createBrowserRouter([
           </Suspense>
         ),
       },
-      {
+      /* {
         path: "/contact",
         element: (
           <Suspense fallback={<Shimmer />}>
             <Contact />
           </Suspense>
         ),
-      },
+      }, */
       {
         path: "/login",
         element: (

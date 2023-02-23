@@ -28,7 +28,11 @@ const cartSlice = createSlice({
       });
     },
     clearItems: (state, action) => {
-      delete state.items[action.payload];
+      if (action.payload) {
+        delete state.items[action.payload];
+      } else {
+        state.items = {};
+      }
     },
   },
 });
