@@ -1,11 +1,11 @@
+import { calculatePrice } from "../utils/utils";
 const PriceInfo = ({ cartItems, menu }) => {
   return (
     <>
       <em className="fa fa-rupee"></em>
-      {parseFloat(
+      {calculatePrice(
+        menu?.price || menu?.defaultPrice,
         cartItems[menu.id]?.quantity
-          ? (menu.price / 100) * cartItems[menu.id]?.quantity
-          : (menu.price / 100) * 1
       )}
     </>
   );

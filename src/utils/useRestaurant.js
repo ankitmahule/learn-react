@@ -9,7 +9,18 @@ const useRestaurant = () => {
   async function getRestaurants() {
     const response = await fetch(RESTAURANT_LIST);
     const json = await response.json();
-    setRestaurants(json.data.cards[2].data.data.cards);
+    const res = json.data.cards
+      .filter((eachCard) =>
+        eachCard?.card?.card?.gridElements?.infoWithStyle.hasOwnProperty(
+          "restaurants"
+        )
+      )
+      .map(
+        (eachCard) =>
+          eachCard?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      );
+    console.log(res);
+    setRestaurants(res[1]);
   }
 
   return restaurants;

@@ -66,12 +66,19 @@ const Header = () => {
               <Link to="/cart">
                 <em className="fa fa-shopping-cart icon-space ml-2"></em>
                 Cart
-                <span className="ml-2">
-                  {Object.values(cartItems).reduce(
-                    (accumulator, eachItem) => accumulator + eachItem.quantity,
-                    0
-                  )}
-                </span>
+                {
+                  // cartItems && cartItems.length > 0 && (
+                  <span className="ml-2">
+                    {Object.values(cartItems).length > 0
+                      ? Object.values(cartItems).reduce(
+                          (accumulator, eachItem) =>
+                            accumulator + eachItem.quantity,
+                          0
+                        )
+                      : ""}
+                  </span>
+                  //)
+                }
               </Link>
             </li>
           </ul>

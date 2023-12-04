@@ -12,14 +12,20 @@ import { addItem } from "../utils/cartSlice";
 import PriceInfo from "./PriceInfo";
 
 const RestaurantMenu = () => {
-  const { menuDetails, filteredMenu, setFilteredMenu } = useRestaurantMenu();
+  const {
+    restaurantDetails,
+    menuItems,
+    filteredMenuItems,
+    setFilteredMenuItems,
+  } = useRestaurantMenu();
+
   const [searchText, setSearchText] = useState("");
   const cartItems = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
   const addToCart = (item) => {
     dispatch(addItem(item));
   };
-  return !menuDetails ? (
+  return !restaurantDetails ? (
     <Shimmer />
   ) : (
     <section className="container">
@@ -32,30 +38,31 @@ const RestaurantMenu = () => {
       <div className="restaurant-data">
         <div className="restaurant-img">
           <img
-            src={`${IMG_CDN_URL}/${menuDetails?.cloudinaryImageId}`}
-            alt={menuDetails?.name}
+            src={`${IMG_CDN_URL}/${restaurantDetails?.cloudinaryImageId}`}
+            alt={restaurantDetails?.name}
           />
         </div>
         <div className="details">
-          <h1 className="my-2 text-2xl font-bold">{menuDetails?.name}</h1>
-          <p className="my-2">{menuDetails?.lastMileTravelString}</p>
+          <h1 className="my-2 text-2xl font-bold">{restaurantDetails?.name}</h1>
+          <p className="my-2">{restaurantDetails?.lastMileTravelString}</p>
           <p className="my-2">
-            {menuDetails?.locality}, {menuDetails?.area}, {menuDetails?.city}
+            {restaurantDetails?.locality}, {restaurantDetails?.areaName},
+            {restaurantDetails?.city}
           </p>
           <h3 className="my-2 font-bold">
-            {menuDetails?.cuisines?.join(", ")}s
+            {restaurantDetails?.cuisines?.join(", ")}s
           </h3>
           <h4 className="my-2">
-            {menuDetails.avgRatingString === "--"
+            {restaurantDetails.avgRatingString === "--"
               ? "No ratings yet"
-              : getStarRatings(menuDetails.avgRating)}
+              : getStarRatings(restaurantDetails.avgRating)}
           </h4>
         </div>
       </div>
       <div className="restaurant-details">
         <div className="search-menu rounded">
           <h1 className="text-2xl font-bold">
-            Menu Items <span>({filteredMenu?.length})</span>
+            Menu Items <span>({filteredMenuItems?.length})</span>
           </h1>
           <div className="search-container">
             <input
@@ -66,9 +73,9 @@ const RestaurantMenu = () => {
               onChange={(e) => {
                 const text = e.target.value;
                 if (text !== "") {
-                  setFilteredMenu(filterMenu(text, filteredMenu));
+                  setFilteredMenuItems(filterMenu(text, menuItems));
                 } else {
-                  setFilteredMenu(Object.values(menuDetails?.menu?.items));
+                  setFilteredMenuItems(menuItems);
                 }
                 setSearchText(text);
               }}
@@ -79,13 +86,13 @@ const RestaurantMenu = () => {
                 className={searchText === "" ? "" : "fa fa-close"}
                 onClick={() => {
                   setSearchText("");
-                  setFilteredMenu(Object.values(menuDetails?.menu?.items));
+                  setFilteredMenuItems(menuItems);
                 }}
               ></em>
             </button>
           </div>
         </div>
-        {filteredMenu?.length <= 0 ? (
+        {filteredMenuItems?.length <= 0 ? (
           <div>
             <h1 className="no-items text-3xl text-center text-slate-700">
               <em className="fa fa-warning mx-2"></em>No Menu Items Found!!
@@ -94,27 +101,33 @@ const RestaurantMenu = () => {
           </div>
         ) : (
           <div className="menu-items">
-            {filteredMenu?.map((eachMenu) => {
+            {filteredMenuItems?.map((eachMenu) => {
               return (
-                <div key={eachMenu.id} className="items">
+                <div key={eachMenu?.card?.info?.id} className="items">
                   <img
-                    src={`${IMG_CDN_URL}/${eachMenu.cloudinaryImageId}`}
-                    alt={eachMenu.name}
+                    src={`${IMG_CDN_URL}/${eachMenu?.card?.info?.imageId}`}
+                    alt={eachMenu?.card?.info?.name}
                   />
                   <h4 className="menu-container text-xl py-2 font-bold">
-                    {eachMenu?.name}
+                    {eachMenu?.card?.info?.name}
                   </h4>
                   <p>{eachMenu.description}</p>
                   <div className="price-container">
                     <h5 className="text-xl font-bold">
-                      <PriceInfo cartItems={cartItems} menu={eachMenu} />
+                      <PriceInfo
+                        cartItems={cartItems}
+                        menu={eachMenu?.card?.info}
+                      />
                     </h5>
-                    {cartItems.hasOwnProperty(eachMenu.id) ? (
-                      <AddToCart cartItems={cartItems} menu={eachMenu} />
+                    {cartItems.hasOwnProperty(eachMenu?.card?.info?.id) ? (
+                      <AddToCart
+                        cartItems={cartItems}
+                        menu={eachMenu?.card?.info}
+                      />
                     ) : (
                       <button
                         className="btn"
-                        onClick={() => addToCart(eachMenu)}
+                        onClick={() => addToCart(eachMenu?.card?.info)}
                       >
                         Add To Cart
                       </button>

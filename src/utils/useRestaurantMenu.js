@@ -4,20 +4,39 @@ import { useState, useEffect } from "react";
 
 const useRestaurantMenu = () => {
   const { resId } = useParams();
-  const [menuDetails, setMenuDetails] = useState(null);
-  const [filteredMenu, setFilteredMenu] = useState(null);
+  const [restaurantDetails, setRestaurantDetails] = useState(null);
+  const [menuItems, setMenuItems] = useState(null);
+  const [filteredMenuItems, setFilteredMenuItems] = useState(null);
 
   useEffect(() => {
     getMenuDetails();
   }, []);
 
   async function getMenuDetails() {
-    const response = await fetch(`${MENU_DETAILS}&menuId=${resId}`);
+    const response = await fetch(`${MENU_DETAILS}&restaurantId=${resId}`);
     const json = await response.json();
-    setMenuDetails(json.data);
-    setFilteredMenu(Object.values(json?.data?.menu?.items));
+    const cardDetails = json?.data?.cards[0]?.card?.card?.info;
+    setRestaurantDetails(cardDetails);
+    /* json?.data?.cards.filter(eachCard => {
+      return eachCard.hasOwnProperty('groupedCard')
+    }).filter(eachGroupedCard => {
+      return eachGroupedCard.
+    }) */
+    setMenuItems(
+      json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+        ?.card?.itemCards
+    );
+    setFilteredMenuItems(
+      json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+        ?.card?.itemCards
+    );
   }
-  return { menuDetails, filteredMenu, setFilteredMenu };
+  return {
+    restaurantDetails,
+    menuItems,
+    filteredMenuItems,
+    setFilteredMenuItems,
+  };
 };
 
 export default useRestaurantMenu;

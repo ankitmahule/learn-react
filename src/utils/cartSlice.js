@@ -14,7 +14,7 @@ const cartSlice = createSlice({
         };
       } else {
         Object.keys(state.items).map((eachKey) => {
-          if (parseInt(eachKey) === action.payload.id) {
+          if (eachKey === action.payload.id) {
             state.items[eachKey].quantity += 1;
           }
         });
@@ -22,7 +22,7 @@ const cartSlice = createSlice({
     },
     removeItem: (state, action) => {
       Object.keys(state.items).map((eachKey) => {
-        if (parseInt(eachKey) === action.payload) {
+        if (eachKey === action.payload) {
           state.items[eachKey].quantity -= 1;
         }
       });

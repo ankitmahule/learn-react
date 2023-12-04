@@ -1,13 +1,17 @@
 export function filterRestaurant(text, data) {
   return data.filter((eachData) =>
-    eachData?.data?.name?.toLowerCase().includes(text?.toLowerCase())
+    eachData?.info?.name?.toLowerCase().includes(text?.toLowerCase())
   );
 }
 
 export function filterMenu(text, data) {
   return data.filter((eachData) =>
-    eachData?.name?.toLowerCase().includes(text?.toLowerCase())
+    eachData?.card?.info?.name?.toLowerCase().includes(text?.toLowerCase())
   );
+}
+
+export function calculatePrice(price, quantity) {
+  return parseFloat(quantity ? (price / 100) * quantity : (price / 100) * 1);
 }
 
 export function getStarRatings(ratings) {

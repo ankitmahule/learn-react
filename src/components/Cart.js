@@ -59,7 +59,7 @@ const Cart = () => {
                   <div className="flex justify-between mr-5 items-center">
                     <img
                       className="mr-5"
-                      src={`${IMG_CDN_URL}/${cartItem?.menu?.cloudinaryImageId}`}
+                      src={`${IMG_CDN_URL}/${cartItem?.menu?.imageId}`}
                       alt={cartItem?.menu?.name}
                     />
 
@@ -94,11 +94,11 @@ const Cart = () => {
               <ul className="text-right">
                 <li>
                   <em className="fa fa-rupee mr-2"></em>
-                  <span>{totalPrice}</span>
+                  <span>{totalPrice.toFixed(2)}</span>
                 </li>
                 <li>
                   <em className="fa fa-rupee mr-2"></em>
-                  <span>{DELIVERY_CHARGES}</span>
+                  <span>{DELIVERY_CHARGES.toFixed(2)}</span>
                 </li>
                 <li className="mb-10">
                   <em className="fa fa-rupee mr-2"></em>
