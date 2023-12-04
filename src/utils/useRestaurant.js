@@ -19,7 +19,6 @@ const useRestaurant = () => {
         (eachCard) =>
           eachCard?.card?.card?.gridElements?.infoWithStyle?.restaurants
       );
-    console.log(res);
     setRestaurants(res[1]);
   }
 
