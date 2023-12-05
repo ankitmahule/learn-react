@@ -15,21 +15,31 @@ const useRestaurantMenu = () => {
   async function getMenuDetails() {
     const response = await fetch(`${MENU_DETAILS}&restaurantId=${resId}`);
     const json = await response.json();
-    const cardDetails = json?.data?.cards[0]?.card?.card?.info;
-    setRestaurantDetails(cardDetails);
-    /* json?.data?.cards.filter(eachCard => {
-      return eachCard.hasOwnProperty('groupedCard')
-    }).filter(eachGroupedCard => {
-      return eachGroupedCard.
-    }) */
-    setMenuItems(
-      json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-        ?.card?.itemCards
-    );
-    setFilteredMenuItems(
-      json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-        ?.card?.itemCards
-    );
+    const resturantDetails = json?.data?.cards[0]?.card?.card?.info;
+    setRestaurantDetails(resturantDetails);
+    const groupedCardData = json?.data?.cards.filter((eachCard) => {
+      return eachCard.hasOwnProperty("groupedCard");
+    })[0];
+    let itemCards = groupedCardData.groupedCard.cardGroupMap.REGULAR.cards
+      .filter((eachCard) => {
+        return eachCard.card.card.hasOwnProperty("itemCards");
+      })
+      .map((eachCard) => eachCard.card.card.itemCards);
+
+    itemCards = itemCards.reduce((firstItem, secondItem) => {
+      return firstItem.concat(secondItem);
+    }, []);
+
+    const finalMenuItems = itemCards.filter((eachItem, index) => {
+      return (
+        index ===
+        itemCards.findIndex(
+          (eachCardItem) => eachCardItem.card.info.id === eachItem.card.info.id
+        )
+      );
+    });
+    setMenuItems(finalMenuItems);
+    setFilteredMenuItems(finalMenuItems);
   }
   return {
     restaurantDetails,

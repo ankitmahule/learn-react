@@ -15,60 +15,64 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="banner">
-        <div className="shadow">
-          <div className="banner-heading container pt-52">
-            <h1 className="font-bold text-5xl leading-relaxed">
-              Welcome, <br /> Get All Your Favorite Food Items At The Doorstep,
-              Order Now
-            </h1>
-            <div className="search-container">
-              <input
-                type="text"
-                placeholder="Search any restaurant"
-                className="search-input rounded"
-                value={searchText}
-                onChange={(e) => {
-                  const text = e.target.value;
-                  if (text !== "") {
-                    setFilteredRestaurants(filterRestaurant(text, restaurants));
-                  }
-                  setSearchText(text);
-                }}
-              />
-              <button>
-                <em
-                  className={searchText === "" ? "" : "fa fa-close"}
-                  onClick={() => {
-                    setSearchText("");
-                  }}
-                ></em>
-              </button>
-
-              {searchText !== "" && (
-                <div className="search-restaurants">
-                  <ul>
-                    {filteredRestaurants?.map((restaurant) => (
-                      <Link
-                        key={restaurant?.info?.id}
-                        to={`/restaurant/${restaurant?.info?.id}`}
-                      >
-                        <li>{restaurant?.info?.name}</li>
-                      </Link>
-                    ))}
-                  </ul>
-                </div>
-              )}
+      {/* <div className="banner">
+          <div className="bg-shadow">
+            <div className="banner-heading container pt-52">
+              <h1 className="font-bold text-4xl leading-relaxed">
+                Welcome, <br /> Get All Your Favorite Food Items At The
+                Doorstep, Order Now
+              </h1>
             </div>
+          </div>
+  </div> */}
+      <div className="search-restaurant">
+        <div className="flex justify-between items-center">
+          <h1 className="font-bold text-2xl">Restaurants Near You</h1>
+          <div className="search-container">
+            <input
+              type="text"
+              placeholder="Search any restaurant"
+              className="search-input"
+              value={searchText}
+              onChange={(e) => {
+                const text = e.target.value;
+                if (text !== "") {
+                  setFilteredRestaurants(filterRestaurant(text, restaurants));
+                }
+                setSearchText(text);
+              }}
+            />
+            <button>
+              <em
+                className={searchText === "" ? "" : "fa fa-close"}
+                onClick={() => {
+                  setSearchText("");
+                }}
+              ></em>
+            </button>
+
+            {searchText !== "" && (
+              <div className="search-restaurants">
+                <ul>
+                  {filteredRestaurants?.map((restaurant) => (
+                    <Link
+                      key={restaurant?.info?.id}
+                      to={`/restaurant/${restaurant?.info?.id}`}
+                    >
+                      <li>{restaurant?.info?.name}</li>
+                    </Link>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>
-      <div className="restaurant-container">
+      <div className="container">
         {restaurants?.length === 0 ? (
           <Shimmer />
         ) : (
           <>
-            <h1 className="font-bold text-4xl">Restaurants Near You</h1>
             <div className="restaurant-list">
               {restaurants?.map((restaurant) => (
                 <Link

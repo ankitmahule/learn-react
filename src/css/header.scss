@@ -1,4 +1,5 @@
 .header {
+  top: 0;
   width: 100%;
   position: fixed;
   z-index: 1000;
@@ -11,13 +12,28 @@
     align-items: center;
     justify-content: space-between;
     height: 5rem;
-    li {
-      color: #eee;
-    }
     h1 {
       a {
         text-decoration: none;
-        color: #eee;
+      }
+    }
+  }
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  ul {
+    list-style-type: none;
+    li {
+      display: inline;
+      margin: 0 2rem;
+      &:last-child {
+        margin-right: 0;
+      }
+      a {
+        text-decoration: none;
       }
     }
   }
@@ -25,12 +41,15 @@
 
 .header-transparent {
   @extend .header;
-  background: transparent;
+  background: #fff;
+  box-shadow: 3px 0px 5px #ddd;
 }
 
 .header-background {
   @extend .header;
-  background: rgba(0, 0, 0);
+  border-bottom: 1px solid #ddd;
+  box-shadow: 3px 0px 5px #ddd;
+  background: #fff;
 }
 
 .static-position {

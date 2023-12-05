@@ -40,7 +40,7 @@ const Header = () => {
       <nav className="container">
         <h1>
           <Link to="/">
-            <em className="fa fa-home mr-2"></em>Food Villa
+            <em className="fa fa-bowl-food mr-2"></em>Crazy Cravings
           </Link>
         </h1>
         <div className="right">
