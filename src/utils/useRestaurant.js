@@ -9,7 +9,7 @@ const useRestaurant = () => {
   async function getRestaurants() {
     const response = await fetch(RESTAURANT_LIST);
     const json = await response.json();
-    const res = json.data.cards
+    let res = json.data.cards
       .filter((eachCard) =>
         eachCard?.card?.card?.gridElements?.infoWithStyle.hasOwnProperty(
           "restaurants"
@@ -19,7 +19,18 @@ const useRestaurant = () => {
         (eachCard) =>
           eachCard?.card?.card?.gridElements?.infoWithStyle?.restaurants
       );
-    setRestaurants(res[1]);
+    res = res.reduce((firstItem, secondItem) => {
+      return firstItem.concat(secondItem);
+    }, []);
+    const finalRestaurantItems = res.filter((eachItem, index) => {
+      return (
+        index ===
+        res.findIndex(
+          (eachCardItem) => eachCardItem.info.id === eachItem.info.id
+        )
+      );
+    });
+    setRestaurants(finalRestaurantItems);
   }
 
   return restaurants;
